@@ -1,0 +1,3 @@
+#exepciones
+class exeptions():
+    pass
