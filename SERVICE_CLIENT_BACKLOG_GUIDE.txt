@@ -1,0 +1,83 @@
+
+Guía sencilla: Conectar `service.py`, `client.py` y `backlog.py`
+Fecha: 2026-05-03
+
+Qué hace cada archivo (muy simple)
+- `service.py`: aplica las reglas del negocio y manda a guardar o enviar resultados.
+- `client.py`: habla con servicios externos (APIs, bases remotas).
+- `backlog.py`: guarda tareas o resultados para procesar después.
+
+Ideas principales para empezar
+- No mezcles responsabilidades: `service` llama a `client` y a `backlog`, pero no hace todo.
+- Pasa las dependencias desde fuera (inyección) para poder probar fácilmente.
+- Si algo falla en `client` o `backlog`, captura el error, regístralo y decide si seguir o parar.
+
+Ejemplo muy simple (plantilla para principiantes)
+
+class Service:
+    def __init__(self, client, backlog, logger):
+        self.client = client
+        self.backlog = backlog
+        self.logger = logger
+
+    def procesar(self, datos):
+        # validar
+        if not isinstance(datos, dict):
+            raise ValueError('datos debe ser dict')
+
+        # llamar al cliente (puede fallar)
+        try:
+            respuesta = self.client.get_data(datos)
+        except Exception:
+            self.logger.exception('Error llamando a client')
+            raise
+
+        # procesar y guardarlo en backlog (no bloquear si no es crítico)
+        resultado = {'ok': True, 'payload': respuesta}
+        try:
+            self.backlog.add(resultado)
+        except Exception:
+            self.logger.exception('No se pudo guardar en backlog')
+
+        return resultado
+
+Cómo usarlo en `Main.py` (pasos)
+1) Crear `logger`, `client` y `backlog`.
+2) Crear `service = Service(client, backlog, logger)`.
+3) Llamar `service.procesar({'id': 1})`.
+
+Checklist para probar que funciona
+- 1) ¿`client` tiene método `get_data` o similar? OK/NO
+- 2) ¿`backlog` tiene método `add` o similar? OK/NO
+- 3) ¿`service` recibe esas tres cosas por parámetro? OK/NO
+- 4) Ejecuta un pequeño script en `Main.py` para ver salida.
+
+Consejos rápidos
+- Para probar, crea objetos falsos (mocks) que devuelvan datos simples.
+- Loggea solo lo necesario y nunca datos sensibles.
+- Si la persistencia falla y es importante, captura y vuelve a lanzar una excepción de servicio.
+
+Siguientes pasos que puedo hacer por ti
+- Revisar `service.py` y proponer un refactor pequeño.
+- Escribir un test unitario de ejemplo usando mocks.
+
+Nota importante: usamos listas (no bases de datos)
+- En este proyecto NO usamos bases de datos. En su lugar, el `backlog` puede ser una lista de Python en memoria.
+- Ventajas: simple, fácil de probar.
+- Limitaciones: los datos se pierden al cerrar el programa y hay que tener cuidado si usas hilos.
+
+Ejemplo de `Backlog` simple usando una lista:
+
+class Backlog:
+    def __init__(self):
+        self.items = []  # lista en memoria
+
+    def add(self, item):
+        self.items.append(item)
+
+    def all(self):
+        return list(self.items)
+
+# Opcional: para "persistencia" muy simple, escribe la lista a un fichero cada cierto tiempo.
+
+Fin (versión sencilla)

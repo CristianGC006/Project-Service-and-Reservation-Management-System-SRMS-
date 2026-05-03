@@ -36,20 +36,28 @@ class User():
     def obtener_todos_usuarios(cls) -> list:
         """Retorna la lista de todos los usuarios registrados"""
         return cls.usuarios_registrados
+
+    @classmethod
+    def obtener_usuario_por_id(cls, user_id: int):
+        for usuario in cls.usuarios_registrados:
+            if usuario["Id"] == user_id:
+                return usuario
+        return None
     
 
     
-#Ejemplo
-U1 = User("Rocio", "Rocio@gmail.com", 123456)
-U2 = User("Juan", "Juan@gmail.com", 654321)
-U3 = User("María", "Maria@gmail.com", 111222)
+if __name__ == "__main__":
+    #Ejemplo
+    U1 = User("Rocio", "Rocio@gmail.com", 123456)
+    U2 = User("Juan", "Juan@gmail.com", 654321)
+    U3 = User("María", "Maria@gmail.com", 111222)
 
-registro1 = U1.create_User()
-registro2 = U2.create_User()
-registro3 = U3.create_User()
+    registro1 = U1.create_User()
+    registro2 = U2.create_User()
+    registro3 = U3.create_User()
 
-print("Usuario 1:", registro1)
-print("Usuario 2:", registro2)
-print("Usuario 3:", registro3)
-print("\nTodos los usuarios registrados:")
-print(User.obtener_todos_usuarios())
+    print("Usuario 1:", registro1)
+    print("Usuario 2:", registro2)
+    print("Usuario 3:", registro3)
+    print("\nTodos los usuarios registrados:")
+    print(User.obtener_todos_usuarios())
