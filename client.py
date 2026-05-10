@@ -1,22 +1,28 @@
 #Generacion del cliente
+from logger import Logger
+
+
 class User():
     # Variable de clase para contar usuarios automáticamente
     _contador = 0
     # Lista de clase para almacenar todos los usuarios
     usuarios_registrados = []
     
-    def __init__(self, name:str, email:str, phone:int):
+    def __init__(self, name:str, email:str, phone:int, logger: Logger = None):
         self.name = name
         self.email = email
         self.phone = phone
+        self.logger = logger or Logger()
         # Incrementar el contador y asignar ID automáticamente
         User._contador += 1
         self.idUser = User._contador
     
     def create_User(self) -> dict:
         if not self.name:
+            self.logger.log_error("Intento de registro con nombre vacío")
             raise ValueError("El nombre de usuario no puede estar Vacio")
         if "@" not in self.email:
+            self.logger.log_error(f"Email inválido al registrar usuario: {self.email}")
             raise ValueError("Email inválido")
         
         # Crear diccionario con los datos del usuario
@@ -29,6 +35,9 @@ class User():
         
         # Agregar el usuario a la lista de usuarios registrados
         User.usuarios_registrados.append(usuario_dict)
+        self.logger.log_info(
+            f"Usuario registrado correctamente: ID={self.idUser}, email={self.email}"
+        )
         
         return usuario_dict
     
