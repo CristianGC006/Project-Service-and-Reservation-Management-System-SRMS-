@@ -1,12 +1,12 @@
 #Servicio de los modulos
 from backlog import Backlog
 from client import User
-from logger import Logger
+from logger import FileLogger, Logger
 
 
 class UserService:
     def __init__(self, logger: Logger = None, backlog: Backlog = None):
-        self.logger = logger or Logger()
+        self.logger = logger or FileLogger()
         self.backlog = backlog or Backlog(self.logger)
         self.logger.log_info("UserService inicializado")
 

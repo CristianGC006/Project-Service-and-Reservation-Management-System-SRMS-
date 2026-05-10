@@ -1,8 +1,27 @@
+from abc import ABC, abstractmethod
 from datetime import datetime
 from pathlib import Path
 
 
-class Logger:
+class Logger(ABC):
+    @abstractmethod
+    def log_evento(self, nivel: str, mensaje: str) -> str:
+        pass
+
+    @abstractmethod
+    def log_info(self, mensaje: str) -> str:
+        pass
+
+    @abstractmethod
+    def log_error(self, mensaje: str) -> str:
+        pass
+
+    @abstractmethod
+    def log_warning(self, mensaje: str) -> str:
+        pass
+
+
+class FileLogger(Logger):
     def __init__(self, file_path: str = "logs.txt"):
         self.file_path = Path(file_path)
         self.file_path.touch(exist_ok=True)
@@ -31,5 +50,5 @@ class Logger:
         return self.log_evento("WARNING", mensaje)
 
 
-class logger(Logger):
+class logger(FileLogger):
     pass

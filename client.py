@@ -1,5 +1,5 @@
 #Generacion del cliente
-from logger import Logger
+from logger import FileLogger, Logger
 
 
 class User():
@@ -12,7 +12,7 @@ class User():
         self.name = name
         self.email = email
         self.phone = phone
-        self.logger = logger or Logger()
+        self.logger = logger or FileLogger()
         # Incrementar el contador y asignar ID automáticamente
         User._contador += 1
         self.idUser = User._contador

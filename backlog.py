@@ -2,7 +2,7 @@
 import datetime
 from client import User
 from exeption import IsNotUserRegistered, InvalidBacklog, ValidationError
-from logger import Logger
+from logger import FileLogger, Logger
 
 
 class Backlog():
@@ -10,7 +10,7 @@ class Backlog():
     def __init__(self, logger: Logger = None):
         #Contenedor de las reservas
         self.items=[]
-        self.logger = logger or Logger()
+        self.logger = logger or FileLogger()
         self.logger.log_info("Backlog inicializado")
 
     def _buscar_usuario(self, user_id:int):
