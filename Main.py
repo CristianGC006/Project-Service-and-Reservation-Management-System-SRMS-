@@ -1,5 +1,5 @@
-##Se crea la base inicial del proyecto
-def nada():
-    pass
+from app import main
 
-##Probando ramificacion del proyecto :D
+
+if __name__ == "__main__":
+    main()

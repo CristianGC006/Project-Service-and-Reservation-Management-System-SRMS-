@@ -1,1 +1,29 @@
-Aqui se almacenaran los logs del software
+Aqui se almacenaran los logs del software[2026-05-10 11:57:55] INFO - Backlog inicializado
+[2026-05-10 11:57:55] INFO - UserService inicializado
+[2026-05-10 11:57:55] INFO - Consulta de todas las reservas: total=0
+[2026-05-10 11:57:56] INFO - Consulta de todas las reservas: total=0
+[2026-05-10 11:58:32] INFO - Usuario registrado correctamente: ID=1, email=deivid@gmail.com
+[2026-05-10 11:58:32] INFO - Usuario registrado desde service: ID=1
+[2026-05-10 11:58:59] INFO - Usuario validado en backlog: ID=1
+[2026-05-10 11:58:59] INFO - Reserva creada: reservation_id=1, user_id=1
+[2026-05-10 11:58:59] INFO - Reserva creada desde service: reservation_id=1
+[2026-05-10 11:59:01] INFO - Consulta de todas las reservas: total=1
+[2026-05-10 11:59:01] INFO - Consulta de todas las reservas: total=1
+[2026-05-10 11:59:05] INFO - Consulta de todas las reservas: total=1
+[2026-05-10 11:59:05] INFO - Consulta de todas las reservas: total=1
+[2026-05-10 12:15:37] INFO - Backlog inicializado
+[2026-05-10 12:15:37] INFO - UserService inicializado
+[2026-05-10 12:15:37] INFO - Consulta de todas las reservas: total=0
+[2026-05-10 12:15:37] INFO - Consulta de todas las reservas: total=0
+[2026-05-10 12:16:12] INFO - Usuario registrado correctamente: ID=1, email=mañasfurino@correo.com
+[2026-05-10 12:16:12] INFO - Usuario registrado desde service: ID=1
+[2026-05-10 12:16:14] INFO - Consulta de todas las reservas: total=0
+[2026-05-10 12:21:57] INFO - Backlog inicializado
+[2026-05-10 12:21:57] INFO - UserService inicializado
+[2026-05-10 12:21:57] INFO - Consulta de todas las reservas: total=0
+[2026-05-10 12:21:57] INFO - Consulta de todas las reservas: total=0
+[2026-05-10 12:22:05] INFO - Consulta de todas las reservas: total=0
+[2026-05-10 12:26:10] INFO - Backlog inicializado
+[2026-05-10 12:26:10] INFO - UserService inicializado
+[2026-05-10 12:26:10] INFO - Consulta de todas las reservas: total=0
+[2026-05-10 12:26:10] INFO - Consulta de todas las reservas: total=0

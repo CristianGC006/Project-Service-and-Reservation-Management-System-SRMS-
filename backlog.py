@@ -21,7 +21,7 @@ class Backlog():
         self.logger.log_info(f"Usuario validado en backlog: ID={user_id}")
         return usuario
 
-    def addBacklog(self, user_id:int, reserva:str, mensaje:str="", hora:str=""):
+    def addBacklog(self, user_id:int, reserva:str, mensaje:str="", hora:str="", servicio:str=""):
         if not reserva:
             self.logger.log_error("Intento de crear reserva vacía")
             raise InvalidBacklog("La reserva no puede estar vacía")
@@ -36,6 +36,7 @@ class Backlog():
             "phone": usuario["Phone"],
             "reserva": reserva,
             "mensaje": mensaje,
+            "servicio": servicio,
             "hora": hora if hora else datetime.datetime.now().strftime("%H:%M"),
             "date":datetime.datetime.now(),
             "estado":"pendiente"    
