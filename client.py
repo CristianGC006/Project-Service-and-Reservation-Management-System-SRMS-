@@ -1,4 +1,4 @@
-#Generacion del cliente
+#Generacion del client
 class User():
     # Variable de clase para contar usuarios automáticamente
     _contador = 0
@@ -61,3 +61,4 @@ if __name__ == "__main__":
     print("Usuario 3:", registro3)
     print("\nTodos los usuarios registrados:")
     print(User.obtener_todos_usuarios())
+
